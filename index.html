@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minha Lista de Contatos</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Minha Lista de Contatos</h1>
+
+        <div class="input-section">
+            <input type="text" id="nome" placeholder="Nome do Contato">
+            <input type="text" id="telefone" placeholder="Telefone (ex: 99999-9999)">
+            <input type="email" id="email" placeholder="E-mail">
+            <button id="addContatoBtn">Adicionar Contato</button>
+        </div>
+
+        <ul id="listaContatos">
+            </ul>
+    </div>
+
+    <hr />
+
+    <section id="testes-section">
+        <h2>Testes Unitários e de Componente</h2>
+        <button id="rodarTodosOsTestesBtn">Rodar Todos os Testes</button>
+        <div id="testes-resultados"></div>
+    </section>
+
+    <script src="script.js"></script>
+
+    <script src="src/rodarTestes.js"></script>
+
+    <script src="tests/unitario.test.js"></script>
+    <script src="tests/componentes.test.js"></script>
+</body>
+</html>
