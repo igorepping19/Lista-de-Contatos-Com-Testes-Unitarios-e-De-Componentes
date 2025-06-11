@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Minha Lista de Contatos</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
     <div class="container">
         <h1>Minha Lista de Contatos</h1>
@@ -18,22 +20,22 @@
         </div>
 
         <ul id="listaContatos">
-            </ul>
+        </ul>
     </div>
 
     <hr />
 
     <section id="testes-section">
         <h2>Testes Unitários e de Componente</h2>
-        <button id="rodarTodosOsTestesBtn">Rodar Todos os Testes</button>
+        <button id="rodarTestesUnitBtn">Rodar Testes Unitários</button>
+        <button id="rodarTestesComponentBtn">Rodar Testes de Componente</button>
         <div id="testes-resultados"></div>
     </section>
 
     <script src="script.js"></script>
-
     <script src="src/rodarTestes.js"></script>
-
     <script src="tests/unitario.test.js"></script>
-    <script src="tests/componentes.test.js"></script>
+    <script src="tests/component.test.js"></script>
 </body>
+
 </html>

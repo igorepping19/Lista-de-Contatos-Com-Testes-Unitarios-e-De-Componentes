@@ -1,65 +1,108 @@
-// tests/unitario.test.js
+// Função que roda todos os testes
+function runUnitTests() {
+  
+  testar("UNIT - Validar nome", () => {
+    if (!window.validarNome("João Silva")) throw new Error("Esperado true para 'João Silva'");
+  });
 
-document.addEventListener('DOMContentLoaded', () => {
-    window.runUnitTests = function() {
-        console.groupCollapsed('--- Rodando Testes Unitários de Validação (1 a 7) ---');
+  testar("UNIT - Validar nome", () => {
+    if (!window.validarNome("Ana Luíza Costa-Souza")) throw new Error("Esperado true para nome com acentos e hífen");
+  });
 
-        describe('Funções de Validação', () => {
+  testar("UNIT - Validar nome", () => {
+    if (window.validarNome("")) throw new Error("Esperado false para nome vazio");
+  });
 
-            // Teste 1: Validar se o nome é válido (letras e espaços)
-            // Teste 2: Exibir erro se for nome inválido (coberto pelo teste de validação e interação da UI)
-            describe('validarNome', () => {
-                test('deve retornar true para nomes válidos e false para nomes inválidos', () => {
-                    expect(window.validarNome('Ana')).toBe(true);
-                    expect(window.validarNome('Carlos Silva')).toBe(true);
-                    expect(window.validarNome('Nome123')).toBe(false); // Inválido: contém números
-                    expect(window.validarNome('')).toBe(false);        // Inválido: vazio
-                });
-            });
+  testar("UNIT - Validar nome", () => {
+    if (window.validarNome("João123")) throw new Error("Esperado false para nome com números");
+  });
 
-            // Teste 3: Validar telefone com 8 a 11 dígitos
-            // Teste 4: Exibir erro se número fora do padrão (coberto pelo teste de validação e interação da UI)
-            describe('validarTelefone', () => {
-                test('deve retornar true para telefones válidos e false para telefones inválidos', () => {
-                    expect(window.validarTelefone('98765432')).toBe(true);      // 8 dígitos
-                    expect(window.validarTelefone('11987654321')).toBe(true);   // 11 dígitos
-                    expect(window.validarTelefone('123')).toBe(false);         // Inválido: menos de 8
-                    expect(window.validarTelefone('123456789012')).toBe(false); // Inválido: mais de 11
-                    expect(window.validarTelefone('abc')).toBe(false);         // Inválido: não numérico
-                });
-            });
+  testar("UNIT - Validar nome", () => {
+    if (window.validarNome("João@Silva")) throw new Error("Esperado false para nome com caracteres especiais");
+  });
 
-            // Teste 5: Validar e-mail válido
-            // Teste 6: Exibir erro se for e-mail inválido (coberto pelo teste de validação e interação da UI)
-            describe('validarEmail', () => {
-                test('deve retornar true para emails válidos e false para emails inválidos', () => {
-                    expect(window.validarEmail('teste@dominio.com')).toBe(true);
-                    expect(window.validarEmail('usuario.nome@sub.dominio.com.br')).toBe(true);
-                    expect(window.validarEmail('emailinvalido')).toBe(false); // Inválido: sem @
-                    expect(window.validarEmail('@dominio.com')).toBe(false);  // Inválido: sem nome de usuário
-                });
-            });
+  testar("UNIT - Validar Telefone", () => {
+    if (!window.validarTelefone("12345678")) throw new Error("Esperado true para telefone de 8 dígitos");
+  });
 
-            // Teste 7: Deve Exibir mensagem de duplicidade
-            describe('verificarDuplicidade', () => {
-                beforeEach(() => {
-                    // Limpa o array de contatos para cada teste de duplicidade
-                    window.appContatos.splice(0, window.appContatos.length);
-                });
+  testar("UNIT - Validar Telefone", () => {
+    if (!window.validarTelefone("912345678")) throw new Error("Esperado true para telefone de 9 dígitos");
+  });
 
-                test('deve retornar uma mensagem se o nome e telefone já existirem', () => {
-                    window.appContatos.push({ nome: 'João', telefone: '123456789', email: 'joao@email.com' });
-                    const mensagem = window.verificarDuplicidade('João', '123456789', 'novo@email.com');
-                    expect(mensagem).toContain('Um contato com este nome e telefone já existe.');
-                });
+  testar("UNIT - Validar Telefone", () => {
+    if (!window.validarTelefone("11987654321")) throw new Error("Esperado true para telefone de 11 dígitos");
+  });
 
-                test('deve retornar string vazia se não houver duplicidade', () => {
-                    window.appContatos.push({ nome: 'Maria', telefone: '987654321', email: 'maria@email.com' });
-                    const mensagem = window.verificarDuplicidade('Pedro', '111111111', 'pedro@email.com');
-                    expect(mensagem).toBe('');
-                });
-            });
-        });
-        console.groupEnd();
-    };
-});
+  testar("UNIT - Validar Telefone", () => {
+    if (!window.validarTelefone("(11) 98765-4321")) throw new Error("Esperado true para telefone formatado");
+  });
+
+  testar("UNIT - Validar Telefone", () => {
+    if (window.validarTelefone("1234567")) throw new Error("Esperado false para telefone com menos de 8 dígitos");
+  });
+
+  testar("UNIT - Validar Telefone", () => {
+    if (window.validarTelefone("123456789012")) throw new Error("Esperado false para telefone com mais de 11 dígitos");
+  });
+
+  testar("UNIT - Validar Telefone", () => {
+    if (window.validarTelefone("123abc456")) throw new Error("Esperado false para telefone com letras");
+  }); 
+ 
+  testar("UNIT - Validar Email", () => {
+    if (!window.validarEmail("teste@example.com")) throw new Error("Esperado true para e-mail válido");
+  });
+
+  testar("UNIT - Validar Email", () => {
+    if (window.validarEmail("testeexample.com")) throw new Error("Esperado false para e-mail sem @");
+  });
+
+  testar("UNIT - Validar Email", () => {
+    if (window.validarEmail("teste@.com")) throw new Error("Esperado false para e-mail sem domínio");
+  });
+
+  testar("UNIT - Validar Email", () => {
+    if (window.validarEmail("teste @example.com")) throw new Error("Esperado false para e-mail com espaço");
+  });
+
+  testar("UNIT - Validar Email", () => {
+    if (window.validarEmail("")) throw new Error("Esperado false para e-mail vazio");
+  });
+
+     testar("UNIT - Verificar duplicidade", () => {
+    // Limpar contatos para este teste
+    window.appContatos.splice(0, window.appContatos.length);
+    const mensagem = window.verificarDuplicidade("Novo Contato", "123456789", "novo@email.com");
+    if (mensagem !== "") throw new Error("Esperado nenhuma mensagem de duplicidade");
+  });
+
+  testar("UNIT - Verificar duplicidade", () => {
+    // Adiciona um contato existente
+    window.appContatos.splice(0, window.appContatos.length);
+    window.appContatos.push({ nome: "Duplicado", telefone: "111111111", email: "duplicado@teste.com" });
+    const mensagem = window.verificarDuplicidade("Duplicado", "111111111", "duplicado@teste.com");
+    if (!mensagem.includes("Um contato com este nome, telefone e e-mail já existe")) throw new Error("Esperado mensagem completa de duplicidade");
+  });
+
+  testar("UNIT - Verificar duplicidade", () => {
+    window.appContatos.splice(0, window.appContatos.length);
+    window.appContatos.push({ nome: "Apenas Nome", telefone: "999999999", email: "diferente@email.com" });
+    const mensagem = window.verificarDuplicidade("Apenas Nome", "123123123", "outro@email.com");
+    if (!mensagem.includes("Um contato com este nome já existe")) throw new Error("Esperado mensagem de duplicidade de nome");
+  });
+
+  testar("UNIT - Salvar contatos e Carregar contatos", () => {
+    // Limpa e adicionar um contato para teste de persistência
+    localStorage.clear();
+    window.appContatos.splice(0, window.appContatos.length);
+    window.appContatos.push({ nome: "Persistido", telefone: "123456780", email: "persistido@test.com" });
+    window.appSalvarContatos(); // Salva o contato
+
+    window.appContatos.splice(0, window.appContatos.length); // Esvazia o array
+    window.appCarregarContatos(); // Carrega do localStorage
+
+    if (window.appContatos.length !== 1 || window.appContatos[0].nome !== "Persistido") {
+      throw new Error("Contatos não foram salvos e carregados corretamente");
+    }
+  });
+}
