@@ -104,27 +104,36 @@ hr {
     grid-template-columns: repeat(3, 1fr); /* 3 colunas de largura igual */
     gap: 20px; /* Espaço entre as colunas */
     align-items: start; /* Alinha os itens ao topo em cada coluna */
-    justify-items: center; /* CENTRALIZA CADA ITEM DENTRO DA SUA CÉLULA DO GRID */
+    /* Removido: justify-items: center; */
 }
 
-/* Garante que os botões de teste e a área de resultados ocupem suas colunas */
+/* Garante que o título da seção de testes ocupe todas as colunas */
 #testes-section h2 {
     grid-column: 1 / -1; /* Ocupa todas as colunas */
     text-align: center;
     margin-bottom: 20px;
 }
 
+/* Estilo para a div que agrupa e centraliza os botões de teste */
+.botoes-testes {
+    grid-column: 1 / -1; /* Faz esta div ocupar todas as 3 colunas do grid pai */
+    display: flex; /* Ativa o Flexbox dentro desta div */
+    justify-content: center; /* Centraliza os itens (botões) horizontalmente dentro dela */
+    gap: 10px; /* Adiciona um pequeno espaço entre os botões */
+    width: 100%; /* Garante que a div ocupe toda a largura disponível para a centralização */
+}
+
+/* Estilos individuais dos botões (agora controlados pela div .botoes-testes) */
 #rodarTestesUnitBtn,
 #rodarTestesComponentBtn {
-    grid-column: span 1; /* Cada botão ocupa uma coluna */
-    background-color: #90EE90; /* Verde claro para os botões de teste */
+    background-color: #90EE90;
     color: #333;
-    padding: 10px;
+    padding: 10px 15px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
     font-size: 1em;
-    width: fit-content; /* Adicionado para que o botão não estique por toda a largura da coluna */
+    width: fit-content; /* Mantém a largura do botão ajustada ao seu conteúdo */
 }
 
 #testes-resultados {
